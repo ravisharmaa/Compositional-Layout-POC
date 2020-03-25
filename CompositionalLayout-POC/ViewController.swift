@@ -92,15 +92,18 @@ class ViewController: UICollectionViewController {
         configureDataSource()
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let sectionType = SectionLayoutKind.init(rawValue: section)!
-        
-        return sectionType.columnCount
-    }
+    // The comp layout removes the implementatation of datasource methods
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
+    
+//    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        let sectionType = SectionLayoutKind.init(rawValue: section)!
+//
+//        return sectionType.columnCount
+//    }
+    
+//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 2
+//    }
     
 }
 
