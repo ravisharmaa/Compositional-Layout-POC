@@ -93,18 +93,7 @@ class ViewController: UICollectionViewController {
     }
     
     // The comp layout removes the implementatation of datasource methods
-    
-    
-//    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        let sectionType = SectionLayoutKind.init(rawValue: section)!
-//
-//        return sectionType.columnCount
-//    }
-    
-//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 2
-//    }
-    
+
 }
 
 extension ViewController {
@@ -138,7 +127,7 @@ extension ViewController {
             case .dateCell:
                 snapshot.appendItems(Array(0..<30))
             case .eventCell:
-                snapshot.appendItems(Array(0..<5))
+                snapshot.appendItems(Array(30..<35))
             }
         }
         
