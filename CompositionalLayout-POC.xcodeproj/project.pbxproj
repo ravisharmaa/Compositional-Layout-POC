@@ -15,6 +15,7 @@
 		229F27672427CC540076B0C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229F27652427CC540076B0C8 /* LaunchScreen.storyboard */; };
 		229F276F2427CCFF0076B0C8 /* ExperimentalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F276E2427CCFF0076B0C8 /* ExperimentalView.swift */; };
 		22B9D62B242B6C7200C96C50 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B9D62A242B6C7200C96C50 /* EventCell.swift */; };
+		22DD20D8242BCC550095A79A /* SupplementaryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD20D7242BCC550095A79A /* SupplementaryHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		229F27682427CC540076B0C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		229F276E2427CCFF0076B0C8 /* ExperimentalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalView.swift; sourceTree = "<group>"; };
 		22B9D62A242B6C7200C96C50 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		22DD20D7242BCC550095A79A /* SupplementaryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				229F276E2427CCFF0076B0C8 /* ExperimentalView.swift */,
 				226856B42428986E001D87F5 /* DateCell.swift */,
 				22B9D62A242B6C7200C96C50 /* EventCell.swift */,
+				22DD20D7242BCC550095A79A /* SupplementaryHeaderView.swift */,
 			);
 			path = "CompositionalLayout-POC";
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22DD20D8242BCC550095A79A /* SupplementaryHeaderView.swift in Sources */,
 				229F275F2427CC530076B0C8 /* ViewController.swift in Sources */,
 				226856B52428986E001D87F5 /* DateCell.swift in Sources */,
 				229F275B2427CC530076B0C8 /* AppDelegate.swift in Sources */,

@@ -23,6 +23,8 @@ enum SectionLayoutKind: Int, CaseIterable {
 
 class ViewController: UICollectionViewController {
     
+    //MARK:- Properties
+    
     var dataSource: UICollectionViewDiffableDataSource<SectionLayoutKind, Int>!
     
     var snapshot = NSDiffableDataSourceSnapshot<SectionLayoutKind, Int>()
@@ -37,6 +39,10 @@ class ViewController: UICollectionViewController {
             // defining the content insets
             var contentInsets: NSDirectionalEdgeInsets?
             
+            // define the header size
+            
+            var headerSize: NSCollectionLayoutSize?
+            
             
             guard let sectionLayoutKind = SectionLayoutKind(rawValue: sectionIndex) else { return nil }
             
@@ -45,7 +51,7 @@ class ViewController: UICollectionViewController {
             
             if sectionLayoutKind == .dateCell {
                 itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(120))
-                contentInsets = NSDirectionalEdgeInsets(top: 35, leading: 10, bottom: 51, trailing: 10)
+                contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 50, trailing: 10)
             } else {
                 itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(90))
                 contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 10, bottom: 0, trailing: 10)
@@ -61,13 +67,25 @@ class ViewController: UICollectionViewController {
             
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: groupHeight)
             
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columnCount == 30 ? 7: 1)
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columnCount == 30 ? 7 : 1)
+            
+            if sectionLayoutKind == .dateCell {
+                headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(400))
+            } else {
+                headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(0.1))
+            }
+            
+            
+            
+            let headerView = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize!, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
             
             let section = NSCollectionLayoutSection(group: group)
             
-            section.interGroupSpacing = 0.1
+            section.boundarySupplementaryItems = [headerView]
             
-            section.contentInsets = NSDirectionalEdgeInsets(top: 40, leading: 20, bottom: 0, trailing: 20)
+            section.interGroupSpacing = 10
+            
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
             
             return section
         }
@@ -88,12 +106,13 @@ class ViewController: UICollectionViewController {
         
         collectionView.register(DateCell.self, forCellWithReuseIdentifier: DateCell.reuseID)
         collectionView.register(EventCell.self, forCellWithReuseIdentifier: EventCell.reuseID)
+        collectionView.register(SupplementaryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView")
         
         configureDataSource()
     }
     
     // The comp layout removes the implementatation of datasource methods
-
+    
 }
 
 extension ViewController {
@@ -119,6 +138,15 @@ extension ViewController {
             }
             
         })
+        
+        dataSource.supplementaryViewProvider = {(
+            collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
+            
+            
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath)
+            
+            return headerView
+        }
         
         SectionLayoutKind.allCases.forEach { (sectionLayout) in
             snapshot.appendSections([sectionLayout])
